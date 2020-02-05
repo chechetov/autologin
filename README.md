@@ -1,11 +1,13 @@
 # autoLogin
 
-Used for autologging into WDE.
+## Used for autologging into WDE.
 
-Consists of:
---- Python ---
---- Chrome + ChromeDriver ---
---- AutoIt ---
+## Consists of:
+
+** Python
+** ChromeDriver
+** Chrome
+** AutoIt
 
 Idea:
 
