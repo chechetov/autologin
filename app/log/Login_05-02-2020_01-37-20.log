@@ -1,0 +1,13 @@
+2020-02-05 01:37:20,483 INFO MyLogger: CreateLogger() (<Logger Login_ (INFO)>) started at 01:37:20 
+ with filename R:\sel-ram\app\log\Login_05-02-2020_01-37-20.log 
+ folder R:\sel-ram\app\log
+2020-02-05 01:37:20,484 INFO InitDriver start
+2020-02-05 01:37:24,146 INFO InitDriver done
+2020-02-05 01:37:26,146 INFO LoginToOkta started
+2020-02-05 01:37:32,252 INFO Logging in as: den96560
+2020-02-05 01:37:35,524 INFO WinAuth launch start
+2020-02-05 01:37:46,852 INFO LaunchWinAuth done
+2020-02-05 01:37:46,852 INFO Reading WinAuth code
+2020-02-05 01:37:46,853 INFO Looking in R:\sel-ram\app\tmp\winauth_code.txt
+2020-02-05 01:37:46,854 INFO Got code: 419407
+2020-02-05 01:37:49,953 INFO Login successful

@@ -1,0 +1,52 @@
+1. Skype update window | Need to check
+2. Could not find a Window fix 10 times | Done
+3. WDE Login click mismatch: Y 568 (Y 537?) | Need to check
+4. (Put login and pass to conf files)
+5. Package
+
+1. Skype update Window:
+
+-------------------------
+
+Present all the way
+(GET TITLE SIZE AND BUTTON POSITIONS)
+
+
+-------------------------
+
+
+3. Login button.
+-------------------------
+WDE Window Can Have or Not Have checkbox "Log in using recent place"
+
+(IF CHECKBOX IS INLCUDED)
+
+1. What is default state of checkbox?
+2. Does it appear every first time I log in or start appearing after I log in at least once)
+
+a) First login window
+Window title: Workspace - Log In - \\Remote
+Size: 360, 401
+Position: 524, 197
+Position of login button: 680, 560
+
+b) Place information window - comes after login
+Window title: Workspace - Channel Information - \\Remote
+Position: 588,238
+Size: 360, 384
+Place field postiion: 823, 404
+Place field value: +19097932853;ext=1020_Place
+Ok button position: 685, 525
+
+
+(IF NO CHECKBOX INCLUDED)
+
+TBC...
+
+-------------------------
+
+
+
+First things first. - \\Remote
+Pos: 0, 206
+Size: 476, 372

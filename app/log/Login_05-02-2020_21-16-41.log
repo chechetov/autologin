@@ -1,0 +1,64 @@
+2020-02-05 21:16:41,766 INFO MyLogger: CreateLogger() (<Logger Login_ (INFO)>) started at 21:16:41 
+ with filename R:\sel-ram\app\log\Login_05-02-2020_21-16-41.log 
+ folder R:\sel-ram\app\log
+2020-02-05 21:16:41,767 INFO InitDriver start
+2020-02-05 21:16:46,319 INFO InitDriver done
+2020-02-05 21:16:48,319 INFO LoginToOkta started
+2020-02-05 21:16:54,687 INFO Logging in as: den96560
+2020-02-05 21:16:57,950 INFO WinAuth launch start
+2020-02-05 21:17:11,978 INFO LaunchWinAuth done
+2020-02-05 21:17:11,978 INFO Reading WinAuth code
+2020-02-05 21:17:11,978 INFO Looking in R:\sel-ram\app\tmp\winauth_code.txt
+2020-02-05 21:17:11,979 INFO Got code: 523774
+2020-02-05 21:17:15,083 INFO Login successful
+2020-02-05 21:17:25,083 INFO ParseOktaButtons start
+2020-02-05 21:17:25,111 INFO Found buttons: [<selenium.webdriver.remote.webelement.WebElement (session="b7a168604d8f213264a8ccfbdc90946f", element="339ee792-11f4-4d11-8b0f-df14ad3220d2")>, <selenium.webdriver.remote.webelement.WebElement (session="b7a168604d8f213264a8ccfbdc90946f", element="2d6d658c-d511-425b-b565-7c2ed149ca3d")>, <selenium.webdriver.remote.webelement.WebElement (session="b7a168604d8f213264a8ccfbdc90946f", element="96042c87-8fc8-45d0-b9bb-b1b27fc38567")>, <selenium.webdriver.remote.webelement.WebElement (session="b7a168604d8f213264a8ccfbdc90946f", element="d8299dc2-2324-4b70-9a5f-9b0c4270e247")>, <selenium.webdriver.remote.webelement.WebElement (session="b7a168604d8f213264a8ccfbdc90946f", element="859203b1-0f5a-4258-916f-32be2f2a58b1")>, <selenium.webdriver.remote.webelement.WebElement (session="b7a168604d8f213264a8ccfbdc90946f", element="ab78ef88-6deb-462e-95e2-77d120fc2648")>, <selenium.webdriver.remote.webelement.WebElement (session="b7a168604d8f213264a8ccfbdc90946f", element="2b3a5195-676d-4f78-bc63-1c14bb7ff43b")>, <selenium.webdriver.remote.webelement.WebElement (session="b7a168604d8f213264a8ccfbdc90946f", element="95a31dca-f8d7-451d-a6cd-622442b18afc")>, <selenium.webdriver.remote.webelement.WebElement (session="b7a168604d8f213264a8ccfbdc90946f", element="5c1f18e9-2eef-4629-9ced-467f3d6ae87d")>, <selenium.webdriver.remote.webelement.WebElement (session="b7a168604d8f213264a8ccfbdc90946f", element="13506416-1efb-40d2-9812-7883f8616c43")>, <selenium.webdriver.remote.webelement.WebElement (session="b7a168604d8f213264a8ccfbdc90946f", element="4ae5d137-9ec8-4ef2-8353-45031ad30db8")>, <selenium.webdriver.remote.webelement.WebElement (session="b7a168604d8f213264a8ccfbdc90946f", element="fae93c6e-7fa8-4172-a45a-4e8a3d894672")>, <selenium.webdriver.remote.webelement.WebElement (session="b7a168604d8f213264a8ccfbdc90946f", element="75ac85c3-7e7b-44e0-b054-e0295d9f4d25")>, <selenium.webdriver.remote.webelement.WebElement (session="b7a168604d8f213264a8ccfbdc90946f", element="b6b4d40b-48f7-4266-9f9c-01d7e9f033f8")>, <selenium.webdriver.remote.webelement.WebElement (session="b7a168604d8f213264a8ccfbdc90946f", element="81e2ccfb-8ef5-47c2-9193-f0bdf3496042")>, <selenium.webdriver.remote.webelement.WebElement (session="b7a168604d8f213264a8ccfbdc90946f", element="8461b73c-907e-4282-8851-413ae80ebaf8")>, <selenium.webdriver.remote.webelement.WebElement (session="b7a168604d8f213264a8ccfbdc90946f", element="3b47c0b8-0282-49c9-a7d7-aa71f0093801")>, <selenium.webdriver.remote.webelement.WebElement (session="b7a168604d8f213264a8ccfbdc90946f", element="71ae5268-fbb5-478c-8dc8-fc28d56f5ce9")>, <selenium.webdriver.remote.webelement.WebElement (session="b7a168604d8f213264a8ccfbdc90946f", element="2fccb79c-6be8-4526-bcfa-ac9e448b12f6")>, <selenium.webdriver.remote.webelement.WebElement (session="b7a168604d8f213264a8ccfbdc90946f", element="d019c8c7-2f36-4961-860f-a71e7c5d0da8")>, <selenium.webdriver.remote.webelement.WebElement (session="b7a168604d8f213264a8ccfbdc90946f", element="6c436665-4a9b-40df-88cf-88c651253a4f")>, <selenium.webdriver.remote.webelement.WebElement (session="b7a168604d8f213264a8ccfbdc90946f", element="ae015ea1-dc4b-4f0f-8451-4c7c4088a6d8")>, <selenium.webdriver.remote.webelement.WebElement (session="b7a168604d8f213264a8ccfbdc90946f", element="827520fb-b470-4d2f-b407-cfb6713e0490")>, <selenium.webdriver.remote.webelement.WebElement (session="b7a168604d8f213264a8ccfbdc90946f", element="efe43e5f-4ae7-46ac-b88c-3ded5620df1c")>]
+
+2020-02-05 21:17:25,115 INFO Found names: [<selenium.webdriver.remote.webelement.WebElement (session="b7a168604d8f213264a8ccfbdc90946f", element="d53e107a-afb6-471a-993e-6727c04e52d5")>, <selenium.webdriver.remote.webelement.WebElement (session="b7a168604d8f213264a8ccfbdc90946f", element="326d6322-78cc-4c77-a4f3-abd3b06d50d5")>, <selenium.webdriver.remote.webelement.WebElement (session="b7a168604d8f213264a8ccfbdc90946f", element="2e4da8ec-5b58-4b47-a900-bad33c18eac5")>, <selenium.webdriver.remote.webelement.WebElement (session="b7a168604d8f213264a8ccfbdc90946f", element="64d701f5-c7d5-4445-9211-eba3de19ee17")>, <selenium.webdriver.remote.webelement.WebElement (session="b7a168604d8f213264a8ccfbdc90946f", element="a2924b48-b514-4e7c-b191-369dec4d2a8b")>, <selenium.webdriver.remote.webelement.WebElement (session="b7a168604d8f213264a8ccfbdc90946f", element="7dc9b274-6d2d-4ce0-9ef1-ba1f3f38050c")>, <selenium.webdriver.remote.webelement.WebElement (session="b7a168604d8f213264a8ccfbdc90946f", element="cd627e86-efb7-4e71-9c57-ff25a91151d5")>, <selenium.webdriver.remote.webelement.WebElement (session="b7a168604d8f213264a8ccfbdc90946f", element="544dcda3-222a-4e94-bb42-127a9af2934d")>, <selenium.webdriver.remote.webelement.WebElement (session="b7a168604d8f213264a8ccfbdc90946f", element="767f44e9-d9fc-423b-86a9-7fb63e0520fb")>, <selenium.webdriver.remote.webelement.WebElement (session="b7a168604d8f213264a8ccfbdc90946f", element="398ac344-4fd4-4069-8c5d-71d0b5f5e68b")>, <selenium.webdriver.remote.webelement.WebElement (session="b7a168604d8f213264a8ccfbdc90946f", element="a2bcab7c-14ce-4ae7-b23b-65fcd555b555")>, <selenium.webdriver.remote.webelement.WebElement (session="b7a168604d8f213264a8ccfbdc90946f", element="d8489335-4362-43c5-80c6-3b7ad1c1bbfe")>, <selenium.webdriver.remote.webelement.WebElement (session="b7a168604d8f213264a8ccfbdc90946f", element="c567451d-aa47-40f9-8e02-4ceaf3e12203")>, <selenium.webdriver.remote.webelement.WebElement (session="b7a168604d8f213264a8ccfbdc90946f", element="dd5d8ce9-9b24-4878-bf0d-e17add7ebd5c")>, <selenium.webdriver.remote.webelement.WebElement (session="b7a168604d8f213264a8ccfbdc90946f", element="8d02399f-80af-47c6-93f0-82f31c5a8e09")>, <selenium.webdriver.remote.webelement.WebElement (session="b7a168604d8f213264a8ccfbdc90946f", element="e518903c-81ca-4cea-a7cf-00de79e91656")>, <selenium.webdriver.remote.webelement.WebElement (session="b7a168604d8f213264a8ccfbdc90946f", element="a729fdd4-542b-449f-a5ad-886150e9d390")>, <selenium.webdriver.remote.webelement.WebElement (session="b7a168604d8f213264a8ccfbdc90946f", element="0695a30e-2dbe-4b71-b7a0-358e05b3955c")>, <selenium.webdriver.remote.webelement.WebElement (session="b7a168604d8f213264a8ccfbdc90946f", element="4f315552-83ab-47d0-bda1-aef4cc572b35")>, <selenium.webdriver.remote.webelement.WebElement (session="b7a168604d8f213264a8ccfbdc90946f", element="863fc4d0-0f6f-45a0-ac70-6309c7494fa4")>, <selenium.webdriver.remote.webelement.WebElement (session="b7a168604d8f213264a8ccfbdc90946f", element="a8e72fdc-585c-462b-a1ce-14f1ae552d23")>, <selenium.webdriver.remote.webelement.WebElement (session="b7a168604d8f213264a8ccfbdc90946f", element="6020ed15-c75e-46e4-933c-7aa258006d14")>, <selenium.webdriver.remote.webelement.WebElement (session="b7a168604d8f213264a8ccfbdc90946f", element="ddf7c19c-1c4c-4474-85b6-0c7249465f19")>, <selenium.webdriver.remote.webelement.WebElement (session="b7a168604d8f213264a8ccfbdc90946f", element="361f00b0-9119-4105-aa57-bfe94d0edd3b")>]
+
+2020-02-05 21:17:25,230 INFO ParseOktaButtons end
+2020-02-05 21:17:25,230 INFO ClickOktaButtonByName start
+2020-02-05 21:17:25,230 INFO Processing button: US-West VPN (Redlands Tech Support)
+
+2020-02-05 21:17:25,230 INFO Found button: US-West VPN (Redlands Tech Support)
+2020-02-05 21:17:25,312 INFO Clicked button: US-West VPN (Redlands Tech Support)
+2020-02-05 21:17:25,312 INFO ClickOktaButtonByName end
+2020-02-05 21:17:25,312 INFO Sleeping...
+2020-02-05 21:17:45,322 INFO Sleeping...end
+2020-02-05 21:17:45,322 INFO GoToXenApp start
+2020-02-05 21:17:53,002 INFO XenAppLink: https://connect.esri.com/dana/home/launch.cgi?url=.ahuvs%3A%2F%2Fjq21t92269r3SyBB5X1CB
+2020-02-05 21:18:01,526 INFO GoToXenApp end
+2020-02-05 21:18:01,526 INFO LoginToXenApp start
+2020-02-05 21:18:01,551 INFO LoginFrameLink: https://connect.esri.com/Citrix/XenApp/auth/,DanaInfo=.aCjvum2Vvz2kwLr66yQu76+login.aspx
+2020-02-05 21:18:07,097 INFO Logging in as : den96560
+2020-02-05 21:18:14,499 INFO LoginToXenApp end
+2020-02-05 21:18:19,499 INFO ClickWDESkypeMenu start
+2020-02-05 21:18:24,582 INFO ClickWDESkypeMenu end
+2020-02-05 21:18:24,582 INFO LocateAWindowByTitle start
+2020-02-05 21:18:31,529 INFO Attempt 1
+2020-02-05 21:18:31,529 INFO ExitCode: 0
+2020-02-05 21:18:31,530 INFO Window "Support Services - \\Remote" found, proceed
+2020-02-05 21:18:34,530 INFO LocateAWindowByTitle end
+2020-02-05 21:18:39,530 INFO ProcessWDE start: LogInToSkype
+2020-02-05 21:18:41,530 INFO Starting exe file...
+2020-02-05 21:18:41,797 INFO Got LogInToSkypeClickButtonAtMainWindow start
+2020-02-05 21:18:41,797 INFO 
+2020-02-05 21:18:41,797 INFO FindAWindow start, attempt 1 of 3
+2020-02-05 21:18:41,798 INFO Target: Support Services - \\Remote
+2020-02-05 21:18:42,967 INFO Title: Support Services - \\Remote
+2020-02-05 21:18:42,967 INFO Handle: 0x000503EE
+2020-02-05 21:18:42,967 INFO Found a window: 0x000503EE
+2020-02-05 21:18:42,967 INFO FindAWindow(): found
+2020-02-05 21:18:42,967 INFO Current handle: 0x000503EE
+2020-02-05 21:18:47,217 INFO 
+2020-02-05 21:18:47,217 INFO GetWindowPos start
+2020-02-05 21:18:47,218 INFO Target: 0x000503EE
+2020-02-05 21:18:47,218 INFO X-Pos: 0
+2020-02-05 21:18:47,218 INFO Y-Pos: 0
+2020-02-05 21:18:47,219 INFO Width: 181
+2020-02-05 21:18:47,219 INFO Height: 261
+2020-02-05 21:18:49,217 INFO 
+2020-02-05 21:18:49,217 INFO Click left
+2020-02-05 21:18:49,218 INFO X: 71
+2020-02-05 21:18:49,218 INFO Y: 147
+2020-02-05 21:18:50,487 INFO ClickButtonAtMainWindow end

@@ -1,0 +1,12 @@
+2020-02-05 01:15:53,299 INFO MyLogger: CreateLogger() (<Logger Login_ (INFO)>) started at 01:15:53 
+ with filename R:\sel-ram\app\log\Login_05-02-2020_01-15-53.log 
+ folder R:\sel-ram\app\log
+2020-02-05 01:15:53,299 INFO InitDriver start
+2020-02-05 01:15:57,014 INFO InitDriver done
+2020-02-05 01:15:59,015 INFO LoginToOkta started
+2020-02-05 01:16:06,200 INFO Logging in as: den96560
+2020-02-05 01:16:09,672 INFO WinAuth launch start
+2020-02-05 01:16:20,990 INFO LaunchWinAuth done
+2020-02-05 01:16:20,990 INFO Reading WinAuth code
+2020-02-05 01:16:20,990 INFO Looking in R:\sel-ram\app\tmp\winauth_code.txt
+2020-02-05 01:16:20,991 INFO Got code: 279515
