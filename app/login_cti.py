@@ -355,6 +355,34 @@ def ClickOktaButtonByName(buttons, name):
 			LogAndPrint(LoginLoggerObject, "Could not click button: " + str(name))
 			exit(1)
 
+def WaitForElement(target, method=By.XPATH, callCounter=0):
+
+	#LogAndPrint(LoginLoggerObject, "WaitForElement(): {0}".format(target))
+	LogAndPrint(LoginLoggerObject, "WaitForElement(): {0}".format(callCounter))
+
+	if callCounter >= 5:
+		
+		LogAndPrint(LoginLoggerObject, "MaxAttempts reached {0}".format(callCounter))
+		driver.quit()
+		exit(1)
+
+	callCounter += 1
+
+	try:
+
+		standard_wait.until(
+			EC.presence_of_element_located(
+				(method, target)
+				))
+		LogAndPrint(LoginLoggerObject, "WaitForElement(): Target found!")
+
+	except Exception as e:
+			
+			LogAndPrint(LoginLoggerObject, "WaitForElement(): Target not!")
+			driver.refresh()
+			time.sleep(2)
+			WaitForElement(target,callCounter=callCounter)
+
 def GoToXenApp():
 
 	'''
@@ -366,10 +394,7 @@ def GoToXenApp():
 
 	XenAppTableXPath = "/html/body/table[5]/tbody/tr/td[2]/center/table/tbody/tr/td/div[1]/div/table/tbody/tr/td/table/tbody/tr/td/div[1]/table[33]/tbody/tr/td[1]/table/tbody/tr/td[2]/a"
 
-	standard_wait.until(
-            EC.presence_of_element_located(
-            	(By.XPATH, XenAppTableXPath)
-            	))
+	WaitForElement(XenAppTableXPath)
 
 	XenAppElement = driver.find_element_by_xpath(XenAppTableXPath)
 	XenAppLink = (XenAppElement.get_attribute('href'))
@@ -620,12 +645,14 @@ time.sleep(15)
 # Switch to second tab is necessary 
 second_tab = driver.window_handles[1]
 driver.switch_to.window(second_tab)
-
-time.sleep(5)
+time.sleep(2)
+driver.refresh()
+time.sleep(2)
 
 LogAndPrint(LoginLoggerObject, "Sleeping...end")
 
 GoToXenApp()
+time.sleep(2)
 LoginToXenApp()
 time.sleep(5)
 
