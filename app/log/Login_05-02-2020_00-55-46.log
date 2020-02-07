@@ -1,6 +1,0 @@
-2020-02-05 00:55:46,448 INFO MyLogger: CreateLogger() (<Logger Login_ (INFO)>) started at 00:55:46 
- with filename R:\sel-ram\app\log\Login_05-02-2020_00-55-46.log 
- folder R:\sel-ram\app\log
-2020-02-05 00:55:46,449 INFO InitDriver start
-2020-02-05 00:55:53,697 INFO InitDriver done
-2020-02-05 00:55:55,697 INFO LoginToOkta started

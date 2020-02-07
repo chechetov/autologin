@@ -17,6 +17,14 @@ class MyLogger(object):
 		self.MyLocation = os.path.realpath(os.path.join(os.getcwd(), os.path.dirname(__file__)))
 		self.LogFolderLocation = os.path.realpath(os.path.join(self.MyLocation, os.pardir, "log"))
 
+		# Cleaning up old logs
+		for root, dirs, files in os.walk(self.LogFolderLocation):
+			for f in files:
+				os.unlink(os.path.join(root, f))
+			for d in dirs:
+				shutil.rmtree(os.path.join(root,d))
+
+
 		if not os.path.exists(self.LogFolderLocation):
 			os.mkdir(self.LogFolderLocation)
 

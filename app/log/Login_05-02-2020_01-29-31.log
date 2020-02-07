@@ -1,8 +1,0 @@
-2020-02-05 01:29:31,322 INFO MyLogger: CreateLogger() (<Logger Login_ (INFO)>) started at 01:29:31 
- with filename R:\sel-ram\app\log\Login_05-02-2020_01-29-31.log 
- folder R:\sel-ram\app\log
-2020-02-05 01:29:31,323 INFO InitDriver start
-2020-02-05 01:29:39,512 INFO InitDriver done
-2020-02-05 01:29:41,512 INFO LoginToOkta started
-2020-02-05 01:29:47,752 INFO Logging in as: den96560
-2020-02-05 01:29:51,091 INFO WinAuth launch start

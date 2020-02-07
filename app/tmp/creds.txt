@@ -1,0 +1,4 @@
+[Credentials]
+User=den96560
+Pass=esridenys128!
+AuthKey=GEIMZJOXAS3OZCFK

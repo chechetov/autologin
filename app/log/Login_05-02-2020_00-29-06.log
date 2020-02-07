@@ -1,4 +1,0 @@
-2020-02-05 00:29:06,552 INFO MyLogger: CreateLogger() (<Logger Login_ (INFO)>) started at 00:29:06 
- with filename R:\sel-ram\app\log\Login_05-02-2020_00-29-06.log 
- folder R:\sel-ram\app\log
-2020-02-05 00:29:06,553 INFO InitDriver start

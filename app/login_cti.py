@@ -6,6 +6,7 @@ import subprocess
 from datetime import datetime
 from datetime import date
 import sys
+from configparser import ConfigParser
 
 # Selenium Imports
 from selenium import webdriver
@@ -41,12 +42,6 @@ def LogAndPrint(LoggerObject, Message):
 
 def InitCapture():
 
-	'''
-	
-	Init videocapture
-	
-	'''
-
 	LogAndPrint(LoginLoggerObject, "InitCapture start")
 
 	VideoHandlerObject = VideoHandler()
@@ -69,7 +64,7 @@ def InitDriver():
 
 	'''
 	
-	Init Chrome Driver as a function to clean up
+	Init Chrome Driver
 
 	'''
 
@@ -84,6 +79,9 @@ def InitDriver():
 	chrome_options = Options()
 	
 	chrome_options.binary_location = chrome_binary
+	chrome_options.add_argument("disable-metrics-system")
+	chrome_options.add_argument("disable-logging")
+	chrome_options.add_argument("disable-dev-tools")
 	chrome_options.add_argument("profile.ephemeral_mode")
 	chrome_options.add_argument("user-data-dir={0}".format(str(chrome_userdir)))
 	chrome_options.add_argument("--disable-extensions")
@@ -99,10 +97,14 @@ def InitDriver():
 	chrome_options.add_argument("no-first-run")
 	chrome_options.add_argument("window-position={0},{1}".format(0, 0))
 	chrome_options.add_argument("--suppress-message-center-popups")
-#	chrome_options.add_argument("--single-process")
 	chrome_options.add_argument("--no-crash-upload")
 	chrome_options.add_argument("--light")
-#	chrome_options.add_argument("--headless")
+	chrome_options.add_argument("--disable-perfetto")
+	
+	
+
+	chrome_options.add_argument("user_experience_metrics.reporting_enabled={0}".format("false"))
+	#	chrome_options.add_argument("--headless")
 	
 	
 	# Needed to pass through Pulse Secure Protocol Open pop-up in Chrome
@@ -124,13 +126,13 @@ def InitDriver():
 	driver.execute_script("window.confirm = function(msg) { return true; }")
 	driver.set_window_size(1024, 768)
 
-	standard_wait = WebDriverWait(driver, 15)
+	standard_wait = WebDriverWait(driver, 20)
 
 	LogAndPrint(LoginLoggerObject, "InitDriver done")
 
 	return [driver, standard_wait]
 
-def LaunchWinAuth():
+def LaunchWinAuth_old():
 
 	'''
 	Launches WinAuth as a subprocess via AutoIt script
@@ -150,6 +152,66 @@ def LaunchWinAuth():
 		LogAndPrint(LoginLoggerObject, "Error: LaunchWinAuth")
 		LogAndPrint(LoginLoggerObject, e)
 		exit(1)
+
+def ListToDict(IncomingArray):
+
+	'''
+	Converts incoming array into dict 
+	Works only with arrays having even number of elements
+	["hello", "world", "good", "day"]  = {"hello":"world", "good":"day"}
+	'''
+
+	IncomingArrayLength = len(IncomingArray)
+	ResultDict = {}
+
+	if IncomingArrayLength % 2 != 0:
+
+		print("ListToDict: Array given is not even!")
+		print(IncomingArray)
+
+		exit(1)
+
+	for i in range(IncomingArrayLength):
+		if i % 2 != 0:
+			ResultDict[IncomingArray[i-1]] = IncomingArray[i]
+	return ResultDict
+
+def LaunchReadAuth(win_auth_key):
+
+	'''
+	Launches authenticator.exe 
+	Requires NodeJS to be installed
+	https://www.npmjs.com/package/authenticator-cli
+	https://www.npmjs.com/package/pkg
+	'''
+
+	LogAndPrint(LoginLoggerObject,"LaunchReadAuth() start")
+	my_location  = os.path.realpath(os.path.realpath(os.path.join(os.getcwd(), os.path.dirname(__file__))))
+	ExeFolderPath = os.path.realpath(os.path.join(my_location,"exe"))
+	AuthFileLocation = os.path.realpath(os.path.join(ExeFolderPath,"authenticator.exe"))
+	AuthArgs = ["--key ", win_auth_key] 
+
+	child = subprocess.Popen([AuthFileLocation, AuthArgs], shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+
+	rc = child.poll()
+
+	resultString = ""
+
+	while (True and rc == None):
+		output = child.stdout.readline()
+		if output == '' and child.poll() is not None:
+			break
+		if output:
+			print(output.strip().decode())
+			resultString += output.strip().decode() + "\n"
+
+		rc = child.poll()
+	
+	code = ListToDict(resultString.split())['Token:']
+	LogAndPrint(LoginLoggerObject,"RC: {0}".format(rc))
+	LogAndPrint(LoginLoggerObject,"LaunchReadAuth() end")
+
+	return code
 
 def ReadWinAuthCode():
 
@@ -175,7 +237,7 @@ def ReadWinAuthCode():
 		LogAndPrint(LoginLoggerObject, "Got NO code using FAKE one...")
 		return "123456"
 
-def LoginToOkta():
+def LoginToOkta(win_auth_key):
 
 	'''
 	Logging to OKTA
@@ -206,8 +268,10 @@ def LoginToOkta():
 	time.sleep(3)
 	
 	# WinAuth
-	LaunchWinAuth()
-	winauth_code = ReadWinAuthCode()
+	# LaunchWinAuth()
+	# winauth_code = ReadWinAuthCode()
+	winauth_code = LaunchReadAuth(win_auth_key)
+	LogAndPrint(LoginLoggerObject, "AuthCode: {0}".format(winauth_code))
 
 	time.sleep(3)
 	elems = driver.find_elements_by_css_selector('[id^="input"]')
@@ -521,11 +585,17 @@ def ProcessWDE(RequestedFunction):
 
 
 # CONSTANTS
-okta_login = "den96560"
-okta_password = "esridenys128!"
-win_auth_file_name = "winauth_code.txt"
+my_location  = os.path.realpath(os.path.realpath(os.path.join(os.getcwd(), os.path.dirname(__file__))))
+config_location = os.path.join(my_location , "tmp", "creds.txt")
 
-my_location = os.path.realpath(os.path.realpath(os.path.join(os.getcwd(), os.path.dirname(__file__))))
+my_parser = ConfigParser()
+my_parser.read(config_location)
+
+okta_login = my_parser.get("Credentials","User")
+okta_password = my_parser.get("Credentials","Pass")
+win_auth_key = my_parser.get("Credentials","AuthKey")
+
+#win_auth_file_name = "winauth_code.txt"
 
 # MAIN IS HERE
 
@@ -537,7 +607,7 @@ LoginLoggerObject = InitLogger()
 [driver,standard_wait] = InitDriver()
 
 # Handle OKTA
-LoginToOkta()
+LoginToOkta(win_auth_key)
 OktaButtonsArray = ParseOktaButtons()
 
 # Connect TO VPN button
