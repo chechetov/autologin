@@ -488,9 +488,13 @@ class DriverWrapper():
 
 
 DriverWrapperObject = DriverWrapper()
+
 DriverWrapperObject.InitDriver()
+time.sleep(1)
+
 DriverWrapperObject.LoginToOkta()
 time.sleep(3)
+
 DriverWrapperObject.ParseOktaButtons()
 DriverWrapperObject.ClickOktaButtonByName("US-West VPN (Redlands Tech Support)")
 DriverWrapperObject.LogAndPrint("Sleeping ... ")
@@ -499,9 +503,10 @@ DriverWrapperObject.LogAndPrint("Sleeping...end")
 
 SecondTab = DriverWrapperObject.DriverObject.window_handles[1]
 DriverWrapperObject.DriverObject.switch_to.window(SecondTab)
+time.sleep(2)
 
 #DriverWrapperObject.DriverObject.refresh()
-time.sleep(2)
+#time.sleep(2)
 
 DriverWrapperObject.GoToXenApp()
 time.sleep(2)
@@ -510,42 +515,12 @@ DriverWrapperObject.LoginToXenApp()
 time.sleep(2)
 
 DriverWrapperObject.ClickWDESkypeMenu()
+time.sleep(3)
 
-print("From this point, proceed manually...not finished yet")
-print("From this point, proceed manually...not finished yet")
-print("From this point, proceed manually...not finished yet")
-print("From this point, proceed manually...not finished yet")
+DriverWrapperObject.ProcessWDE("LogInToSkype")
+time.sleep(3)
 
+DriverWrapperObject.ProcessWDE("LogInToWDE")
+time.sleep(3)
 
-
-
-
-
-
-
-'''
-
-GoToXenApp()
-time.sleep(2)
-LoginToXenApp()
-time.sleep(5)
-
-ClickWDESkypeMenu()
-
-WindowTitle = "Support Services - \\\\Remote"
-LocateAWindowByTitle(WindowTitle)
-
-time.sleep(5)
-
-ProcessWDE("LogInToSkype")
-time.sleep(5)
-
-ProcessWDE("LogInToWDE")
-time.sleep(5)
-
-ProcessWDE("SetAtDeskWDE")
-
-time.sleep(5)
-#StopVideoCapture(VideoHandlerInstance)
-
-'''
+DriverWrapperObject.ProcessWDE("SetAtDeskWDE")
