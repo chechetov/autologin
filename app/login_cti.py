@@ -57,6 +57,7 @@ class DriverWrapper():
 				shutil.rmtree(os.path.join(root,d))
 
 	# Helper functions
+
 	def LogAndPrint(self, Message):
 
 		self.LoggerObject.LogAndPrint(Message)
@@ -89,8 +90,10 @@ class DriverWrapper():
 	def WaitForElement(self, target, method=By.XPATH, callCounter=0):
 
 		'''
+
 		This one waits for an element to be present within standard wait 
 		Calls itself recursively for N times until it dies with exit(1)
+
 		'''
 
 		self.LogAndPrint("WaitForElement(): {0}".format(callCounter))
@@ -182,8 +185,9 @@ class DriverWrapper():
 
 			self.LogAndPrint("RC: {0}".format(rc))
 			self.LogAndPrint("LocateWindowByTitleNew(): end")
-
+	
 	# Helper functions end
+	
 	def InitDriver(self):
 
 		'''
@@ -237,7 +241,7 @@ class DriverWrapper():
 		'''
 
 		Launches authenticator.exe
-		Requires NodeJS to be installed
+		Requires NodeJS to be installed ?
 		https://www.npmjs.com/package/authenticator-cli
 		https://www.npmjs.com/package/pkg
 
@@ -271,10 +275,9 @@ class DriverWrapper():
 	def LoginToOkta(self):
 
 		'''
-		Logging to OKTA
 
-		NEED: self.OktaLogin
-				self.OktaPassword
+		Logging to OKTA
+		Reads: self.OktaLogin, self.OktaPassword
 
 		'''
 
