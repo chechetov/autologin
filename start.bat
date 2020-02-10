@@ -1,13 +1,10 @@
 @ECHO OFF
+
 Setlocal EnableDelayedExpansion
 set MOUNTED=0
-
-for /l %%i IN (1,2,3,4,5) do (
-echo "Iteration %%i"
 timeout 1 > NUL
 
 GOTO :CHECKING
-echo "Mounted here: " !MOUNTED!
 
 :LAUNCHING
 IF !MOUNTED! == 1 (
@@ -22,7 +19,7 @@ ELSE(
 
 
 :MOUNTING
-echo "Doing mounting..."
+echo "Mounting..."
 timeout 1 > NUL
 imdisk -a -f "A:\ramdisk\image.img" -m R:
 timeout 1 > NUL
@@ -31,13 +28,13 @@ GOTO :CHECKING
 
 :CHECKING	
 IF EXIST "R:\autologin\app\login_cti.py" (
-	echo "Looks mounted"
+	echo "Mounted"
 	SET MOUNTED=1
-	echo "Mounted is: " !MOUNTED!
+	echo "Status: " !MOUNTED!
 	GOTO :LAUNCHING
 ) ELSE (
-	echo "Looks not mounted"
+	echo "Not mounted"
 	SET MOUNTED=0
+	echo "Status: " !MOUNTED!
 	GOTO :MOUNTING
-	echo "Mounted is: " !MOUNTED!
 )
