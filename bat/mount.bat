@@ -1,0 +1,1 @@
+imdisk -a -f "A:\ramdisk\image.img" -m R:
