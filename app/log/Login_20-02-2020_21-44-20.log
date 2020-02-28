@@ -1,0 +1,74 @@
+2020-02-20 21:44:20,807 INFO 
+MyLogger: started at 21:44:20 in R:\autologin\app\log\Login_20-02-2020_21-44-20.log 
+
+2020-02-20 21:44:20,840 INFO InitDriver(): start
+2020-02-20 21:44:24,436 INFO InitDriver(): end
+2020-02-20 21:44:25,436 INFO LoginToOkta() start
+2020-02-20 21:44:31,529 INFO Username: den96560
+2020-02-20 21:44:38,796 INFO LaunchReadAuth(): start
+2020-02-20 21:44:38,890 INFO AuthCode: 130476
+2020-02-20 21:44:38,891 INFO LaunchReadAuth() end
+2020-02-20 21:44:44,999 INFO LoginToOkta() end
+2020-02-20 21:44:47,999 INFO ParseOktaButtons(): start
+2020-02-20 21:44:48,824 INFO ParseOktaButtons(): end
+2020-02-20 21:44:48,824 INFO ClickOktaButtonByName(): start
+2020-02-20 21:44:48,824 INFO Target: US-West VPN (Redlands Tech Support)
+
+2020-02-20 21:44:48,824 INFO Found: US-West VPN (Redlands Tech Support)
+2020-02-20 21:44:53,927 INFO Clicked: US-West VPN (Redlands Tech Support)
+2020-02-20 21:44:53,928 INFO ClickOktaButtonByName() end
+2020-02-20 21:44:53,928 INFO Sleeping ... 
+2020-02-20 21:45:08,928 INFO Sleeping...end
+2020-02-20 21:45:10,935 INFO GoToXenApp(): start
+2020-02-20 21:45:10,935 INFO WaitForElement(): 0
+2020-02-20 21:45:21,350 INFO WaitForElement(): Target found
+2020-02-20 21:45:21,364 INFO XenAppLink: https://connect.esri.com/dana/home/launch.cgi?url=.ahuvs%3A%2F%2Fjq21t92269r3SyBB5X1CB
+2020-02-20 21:45:29,524 INFO GoToXenApp(): end
+2020-02-20 21:45:31,524 INFO LoginToXenApp(): start
+2020-02-20 21:45:31,524 INFO WaitForElement(): 0
+2020-02-20 21:45:31,538 INFO WaitForElement(): Target found
+2020-02-20 21:45:31,549 INFO LoginFrameLink: https://connect.esri.com/Citrix/XenApp/auth/,DanaInfo=.aCjvum2Vvz2kwLr66yQu76+login.aspx
+2020-02-20 21:45:36,987 INFO Username:den96560
+2020-02-20 21:45:36,987 INFO WaitForElement(): 0
+2020-02-20 21:45:37,001 INFO WaitForElement(): Target found
+2020-02-20 21:45:39,092 INFO WaitForElement(): 0
+2020-02-20 21:45:39,106 INFO WaitForElement(): Target found
+2020-02-20 21:45:44,335 INFO LoginToXenApp(): end
+2020-02-20 21:45:46,335 INFO ClickWDESkypeMenu(): start
+2020-02-20 21:45:48,335 INFO WaitForElement(): 0
+2020-02-20 21:45:48,346 INFO WaitForElement(): Target found
+2020-02-20 21:45:51,423 INFO ClickWDESkypeMenu(): end
+2020-02-20 21:45:54,423 INFO ProcessWDE start: LogInToSkype
+2020-02-20 21:45:54,640 INFO GOT: LogInToSkype
+2020-02-20 21:45:54,640 INFO Got LogInToSkype
+2020-02-20 21:45:54,641 INFO LogInToSkype() start
+2020-02-20 21:45:54,641 INFO ClickButtonAtMainWindow() start
+2020-02-20 21:45:54,641 INFO 
+2020-02-20 21:45:54,641 INFO FindAWindow() start
+2020-02-20 21:45:54,641 INFO Attempt 1 of 6
+2020-02-20 21:45:54,641 INFO Target: Support Services - \\Remote
+2020-02-20 21:46:05,441 INFO Title: Support Services - \\Remote
+2020-02-20 21:46:05,441 INFO Handle: 0x0006033E
+2020-02-20 21:46:05,441 INFO Found a window: 0x0006033E
+2020-02-20 21:46:05,442 INFO FindAWindow(): found
+2020-02-20 21:46:05,442 INFO Current handle: 0x0006033E
+2020-02-20 21:46:05,442 INFO Sleeping 0.3 s
+2020-02-20 21:46:05,991 INFO Sleeping 0.75 s
+2020-02-20 21:46:06,741 INFO ClickButtonAtMainWindow() Title: Support Services - \\Remote
+2020-02-20 21:46:06,741 INFO HANDLE: 0x0006033E
+2020-02-20 21:46:06,742 INFO 
+2020-02-20 21:46:06,742 INFO GetWindowPos start
+2020-02-20 21:46:06,742 INFO Target: 0x0006033E
+2020-02-20 21:46:06,743 INFO X-Pos: 0
+2020-02-20 21:46:06,743 INFO Y-Pos: 0
+2020-02-20 21:46:06,743 INFO Width: 181
+2020-02-20 21:46:06,744 INFO Height: 261
+2020-02-20 21:46:06,744 INFO Sleeping 0.45 s
+2020-02-20 21:46:07,192 INFO 
+2020-02-20 21:46:07,192 INFO Click left
+2020-02-20 21:46:07,193 INFO X: 71
+2020-02-20 21:46:07,193 INFO Y: 147
+2020-02-20 21:46:07,483 INFO Sleeping 1.5 s
+2020-02-20 21:46:08,983 INFO Sleeping 0.45 s
+2020-02-20 21:46:09,433 INFO ClickButtonAtMainWindow() end
+2020-02-20 21:46:09,433 INFO Sleeping 7.5 s
