@@ -1,0 +1,49 @@
+2020-02-28 17:32:47,984 INFO 
+MyLogger: started at 17:32:47 in A:\gitreps\autologin\src\log\Login_28-02-2020_17-32-47.log 
+
+2020-02-28 17:32:49,560 INFO InitDriver(): start
+2020-02-28 17:33:02,891 INFO InitDriver(): end
+2020-02-28 17:33:03,892 INFO LoginToOkta() start
+2020-02-28 17:33:10,023 INFO Username: den96560
+2020-02-28 17:33:18,261 INFO LaunchReadAuth(): start
+2020-02-28 17:33:32,076 INFO AuthCode: 932228
+2020-02-28 17:33:32,076 INFO LaunchReadAuth() end
+2020-02-28 17:33:38,187 INFO LoginToOkta() end
+2020-02-28 17:33:41,201 INFO ParseOktaButtons(): start
+2020-02-28 17:33:41,325 INFO ParseOktaButtons(): end
+2020-02-28 17:33:41,325 INFO ClickOktaButtonByName(): start
+2020-02-28 17:33:41,325 INFO Target: US-West VPN (Redlands Tech Support)
+
+2020-02-28 17:33:41,325 INFO Found: US-West VPN (Redlands Tech Support)
+2020-02-28 17:33:41,372 INFO Clicked: US-West VPN (Redlands Tech Support)
+2020-02-28 17:33:41,388 INFO ClickOktaButtonByName() end
+2020-02-28 17:33:41,390 INFO Sleeping ... 
+2020-02-28 17:33:56,398 INFO Sleeping...end
+2020-02-28 17:33:58,398 INFO GoToXenApp(): start
+2020-02-28 17:33:58,398 INFO WaitForElement(): 0
+2020-02-28 17:34:13,042 INFO WaitForElement(): Target found
+2020-02-28 17:34:13,056 INFO XenAppLink: https://connect.esri.com/dana/home/launch.cgi?url=.ahuvs%3A%2F%2Fjq21t92269r3SyBB5X1CB
+2020-02-28 17:34:23,708 INFO GoToXenApp(): end
+2020-02-28 17:34:25,715 INFO LoginToXenApp(): start
+2020-02-28 17:34:25,715 INFO WaitForElement(): 0
+2020-02-28 17:34:25,715 INFO WaitForElement(): Target found
+2020-02-28 17:34:25,732 INFO LoginFrameLink: https://connect.esri.com/Citrix/XenApp/auth/,DanaInfo=.aCjvum2Vvz2kwLr66yQu76+login.aspx
+2020-02-28 17:34:31,259 INFO Username:den96560
+2020-02-28 17:34:31,259 INFO WaitForElement(): 0
+2020-02-28 17:34:31,263 INFO WaitForElement(): Target found
+2020-02-28 17:34:33,418 INFO WaitForElement(): 0
+2020-02-28 17:34:33,418 INFO WaitForElement(): Target found
+2020-02-28 17:34:40,158 INFO LoginToXenApp(): end
+2020-02-28 17:34:42,160 INFO ClickWDESkypeMenu(): start
+2020-02-28 17:34:44,173 INFO WaitForElement(): 0
+2020-02-28 17:35:04,193 INFO WaitForElement(): Target not found!
+2020-02-28 17:35:06,964 INFO WaitForElement(): 1
+2020-02-28 17:35:27,470 INFO WaitForElement(): Target not found!
+2020-02-28 17:35:30,248 INFO WaitForElement(): 2
+2020-02-28 17:35:50,753 INFO WaitForElement(): Target not found!
+2020-02-28 17:35:53,532 INFO WaitForElement(): 3
+2020-02-28 17:36:14,036 INFO WaitForElement(): Target not found!
+2020-02-28 17:36:16,800 INFO WaitForElement(): 4
+2020-02-28 17:36:36,830 INFO WaitForElement(): Target not found!
+2020-02-28 17:36:39,598 INFO WaitForElement(): 5
+2020-02-28 17:36:39,598 INFO MaxAttempts reached 5

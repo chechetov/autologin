@@ -4,9 +4,9 @@ import os
 import shutil
 import time
 import subprocess
-from datetime import datetime
+
 from datetime import date
-import sys
+from datetime import datetime
 from configparser import ConfigParser
 
 # Selenium Imports
@@ -97,10 +97,10 @@ class DriverWrapper():
 
 		'''
 
-		self.LogAndPrint("WaitForElement(): {0}".format(callCounter))
+		self.LogAndPrint("WaitForElement(): Attempt {0}".format(callCounter))
 
 		if callCounter >= 5:
-			self.LogAndPrint("MaxAttempts reached {0}".format(callCounter))
+			self.LogAndPrint("WaitForElement(): MaxAttempts reached {0}".format(callCounter))
 			self.DriverObject.quit()
 			sys.exit(1)
 
@@ -109,11 +109,11 @@ class DriverWrapper():
 		try:
 		
 			self.StandardWaitObject.until(EC.presence_of_element_located((method, target)))
-			self.LogAndPrint("WaitForElement(): Target found")
+			self.LogAndPrint("WaitForElement(): Found")
 		
 		except Exception as e:	
 		
-			self.LogAndPrint("WaitForElement(): Target not found!")
+			self.LogAndPrint("WaitForElement(): Not found!")
 			
 			# Refresh will cause all fields to refresh and lose their values if this 
 			# function is used for not-the-first element on the page
@@ -121,72 +121,8 @@ class DriverWrapper():
 
 			# This refresh can be a bit dangerous as it can reset element state
 			self.DriverObject.refresh()
-			time.sleep(2)
+			time.sleep(1)
 			self.WaitForElement(target,callCounter=callCounter)
-
-	def LocateAWindowByTitle(self, WindowTitle):
-
-		'''
-		
-		Checking if WindowTitle is present
-		Loooping until found or reached 100 attempts
-
-		'''
-
-		self.LogAndPrint("LocateAWindowByTitle(): start")
-
-		ExitCode = None
-		AttemptsCounter = 0
-		MaxAttempts = 150
-
-		CheckWindowExePath = os.path.realpath(os.path.join(self.ExeFolderPath, "CheckWindow.exe"))
-
-		while ExitCode !=0 and AttemptsCounter < MaxAttempts:
-			ChildProcess = subprocess.Popen([CheckWindowExePath, WindowTitle], shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
-
-			for line in ChildProcess.stdout.readlines():
-				ChildProcess.wait()
-				# Outputs title and handle
-				#LogAndPrint(LoginLoggerObject, line)
-				ExitCode=ChildProcess.returncode
-
-			time.sleep(5)
-			AttemptsCounter = AttemptsCounter + 1
-			self.LogAndPrint("Attempt " + str(AttemptsCounter))
-			self.LogAndPrint("ExitCode: " + str(ExitCode))
-
-			if (AttemptsCounter == MaxAttempts and ExitCode !=0):
-				self.LogAndPrint("MaxAttempts reached: " + str(AttemptsCounter) + "/" + str(MaxAttempts))
-				self.LogAndPrint("LocateAWindowByTitle(): end")
-				sys.exit(1)
-			else:
-				self.LogAndPrint("Window \"{0}\" found, proceed".format(WindowTitle))
-				time.sleep(3)
-				self.LogAndPrint("LocateAWindowByTitle():  end")
-
-	def LocateWindowByTitleNew(self, WindowTitle):
-
-		if not WindowTitle:		
-			self.LogAndPrint("LocateWindowByTitle(): No WindowTitle is supplied")
-			sys.exit(1)
-
-		CheckWindowExePath = os.path.realpath(os.path.join(self.ExeFolderPath, "CheckWindow.exe"))
-
-		child = subprocess.Popen([CheckWindowExePath, WindowTitle], shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
-		rc = child.poll()
-
-		while (True and rc == None):
-				
-			output = child.stdout.readline()
-			if output == '' and child.poll() is not None:
-				break
-			if output:
-				self.LogAndPrint(output.strip().decode())
-				rc = child.poll()
-
-		self.LogAndPrint("RC: {0}".format(rc))
-		self.LogAndPrint("LocateWindowByTitleNew(): end")	
-	# Helper functions end	
 
 	def InitDriver(self):
 
@@ -197,7 +133,7 @@ class DriverWrapper():
 		
 		'''
 
-		self.LogAndPrint("InitDriver(): start")
+		self.LogAndPrint("\nInitDriver(): Start")
 
 		ChromeOptions = Options()
 		ChromeOptions.binary_location = self.ChromeBinaryLocation
@@ -206,35 +142,34 @@ class DriverWrapper():
 		ChromeOptions.add_argument("disable-dev-tools")
 		ChromeOptions.add_argument("profile.ephemeral_mode")
 		ChromeOptions.add_argument("user-data-dir={0}".format(str(self.ChromeUserDirLocation)))
-		ChromeOptions.add_argument("--disable-extensions")
-		ChromeOptions.add_argument("--no-network-profile-warning")
+		ChromeOptions.add_argument("disable-extensions")
+		ChromeOptions.add_argument("no-network-profile-warning")
 		ChromeOptions.add_argument("disable-background-networking")
 		ChromeOptions.add_argument("disable-client-side-phishing-detection")
 		ChromeOptions.add_argument("disable-default-apps")
 		ChromeOptions.add_argument("disable-domain-reliability")
-		ChromeOptions.add_argument("disk-cache-size={0}".format( 64* 1024 * 1024 ))
+		ChromeOptions.add_argument("disk-cache-size={0}".format( 64 * 1024 * 1024 ))
 		ChromeOptions.add_argument("incognito")
 		ChromeOptions.add_argument("no-default-browser-check")
 		ChromeOptions.add_argument("no-first-run")
 		ChromeOptions.add_argument("window-position={0},{1}".format(0, 0))
-		ChromeOptions.add_argument("--suppress-message-center-popups")
-		ChromeOptions.add_argument("--no-crash-upload")
-		ChromeOptions.add_argument("--light")
-		ChromeOptions.add_argument("--disable-perfetto")
+		ChromeOptions.add_argument("suppress-message-center-popups")
+		ChromeOptions.add_argument("no-crash-upload")
+		ChromeOptions.add_argument("light")
+		ChromeOptions.add_argument("disable-perfetto")
 
 		# Needed for PulseSecure pop-up handling
 
 		prefs = {"protocol_handler.excluded_schemes":{"pulsesecure":False}}
 		ChromeOptions.add_experimental_option("prefs",prefs)
-		#ChromeOptions.add_argument("user_experience_metrics.reporting_enabled={0}".format("false"))
+		ChromeOptions.add_argument("user_experience_metrics.reporting_enabled={0}".format("false"))
 
 		self.DriverObject = webdriver.Chrome(executable_path=self.ChromeDriverLocation, options=ChromeOptions)
 		#driver.execute_script("window.confirm = function(msg) { return true; }")
-		
 		self.DriverObject.set_window_size(1024, 768)
 		self.StandardWaitObject = WebDriverWait(self.DriverObject, 20)
-		
-		self.LogAndPrint("InitDriver(): end")
+
+		self.LogAndPrint("InitDriver(): End")
 
 	def LaunchReadAuth(self):
 
@@ -247,11 +182,11 @@ class DriverWrapper():
 
 		'''
 
-		self.LogAndPrint("LaunchReadAuth(): start")
+		self.LogAndPrint("LaunchReadAuth(): Start")
 		AuthFileLocation = os.path.realpath(os.path.join(self.ExeFolderPath, "authenticator.exe"))
 		AuthArgs = [" --key ", self.AuthSecret]
 		ChildProcessPath = AuthFileLocation + AuthArgs[0] + AuthArgs[1]
-		print(ChildProcessPath)
+		#print(ChildProcessPath)
 
 		ChildProcess = subprocess.Popen(ChildProcessPath, shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
 		ExitCode = ChildProcess.poll()
@@ -263,7 +198,7 @@ class DriverWrapper():
 			if ProcessOutput == '' and ChildProcess.poll() is not None:
 				break
 			if ProcessOutput:
-				print("output: " + ProcessOutput.strip().decode())
+				#print("output: " + ProcessOutput.strip().decode())
 				ResultString +=  ProcessOutput.strip().decode() + "\n"
 
 			ExitCode = ChildProcess.poll()
@@ -271,8 +206,8 @@ class DriverWrapper():
 		self.AuthCode = self.ListToDict(ResultString.split())['Token:']
 
 		#LogAndPrint("RC: {0}".format(rc))
-		self.LogAndPrint("AuthCode: {0}".format(self.AuthCode))
-		self.LogAndPrint("LaunchReadAuth() end")
+		self.LogAndPrint("LaunchReadAuth(): AuthCode: {0}".format(self.AuthCode))
+		self.LogAndPrint("LaunchReadAuth(): End")
 
 	def LoginToOkta(self):
 
@@ -283,13 +218,13 @@ class DriverWrapper():
 
 		'''
 
-		self.LogAndPrint("LoginToOkta() start")
+		self.LogAndPrint("\nLoginToOkta(): Start")
 		self.DriverObject.get("https://esri.okta.com/")
 
 		time.sleep(3)
 
 		# User and password
-		self.LogAndPrint("Username: " + str(self.OktaLogin))
+		self.LogAndPrint("LoginToOkta(): Username: " + str(self.OktaLogin))
 
 		self.DriverObject.find_element_by_id("okta-signin-username").clear()
 		time.sleep(1)
@@ -322,8 +257,18 @@ class DriverWrapper():
 
 		time.sleep(3)
 
-		self.LogAndPrint("LoginToOkta() end")
+		OktaButtonsXPath = '//*[@id="main-content"]/div/div[3]/ul[2]/li[*]/a'
+		
+		try:
+			
+			self.WaitForElement(OktaButtonsXPath)
+			self.LogAndPrint("LoginToOkta(): End")
+	
+		except Exception as e:
 
+			self.LogAndPrint(e)
+			sys.exit(1)
+		
 	def ParseOktaButtons(self):
 
 		'''
@@ -332,7 +277,7 @@ class DriverWrapper():
 		Sets self.OktaButtons
 
 		'''
-		self.LogAndPrint("ParseOktaButtons(): start")
+		self.LogAndPrint("\nParseOktaButtons(): Start")
 
 		buttons = self.DriverObject.find_elements_by_xpath('//*[@id="main-content"]/div/div[3]/ul[2]/li[*]/a')
 		names = self.DriverObject.find_elements_by_xpath('//*[@id="main-content"]/div/div[3]/ul[2]/li[*]/p')
@@ -349,7 +294,7 @@ class DriverWrapper():
 			self.LogAndPrint("Names: {0}".format(names)  + "\n")
 			sys.exit(1)
 
-		self.LogAndPrint("ParseOktaButtons(): end")
+		self.LogAndPrint("ParseOktaButtons(): End")
 		#self.LogAndPrint(res)
 		self.OktaButtons = res if res else sys.exit(1)
 
@@ -364,18 +309,18 @@ class DriverWrapper():
 		IncomingButtons = self.OktaButtons
 		PassedButtonsArray = []
 
-		self.LogAndPrint("ClickOktaButtonByName(): start")
-		self.LogAndPrint("Target: " + ButtonName + "\n")
+		self.LogAndPrint("\nClickOktaButtonByName(): Start")
+		self.LogAndPrint("ClickOktaButtonByName(): Target: " + ButtonName)
 
 		for button in IncomingButtons:
 			
 			PassedButtonsArray.append(button['name'])
 
 			if ButtonName == button['name']:
-				self.LogAndPrint("Found: " + str(ButtonName))
+				self.LogAndPrint("ClickOktaButtonByName(): Found: " + str(ButtonName))
 				button['button'].click()
-				self.LogAndPrint("Clicked: " + str(ButtonName))
-				self.LogAndPrint("ClickOktaButtonByName() end")
+				self.LogAndPrint("ClickOktaButtonByName(): Clicked: " + str(ButtonName))
+				self.LogAndPrint("ClickOktaButtonByName(): End")
 			
 	def GoToXenApp(self):
 
@@ -385,18 +330,18 @@ class DriverWrapper():
 
 		'''
 
-		self.LogAndPrint("GoToXenApp(): start")
+		self.LogAndPrint("\nGoToXenApp(): Start")
 		XenAppTableXPath = "/html/body/table[5]/tbody/tr/td[2]/center/table/tbody/tr/td/div[1]/div/table/tbody/tr/td/table/tbody/tr/td/div[1]/table[33]/tbody/tr/td[1]/table/tbody/tr/td[2]/a"
 		self.WaitForElement(XenAppTableXPath)
 
 		XenAppElement = self.DriverObject.find_element_by_xpath(XenAppTableXPath)
 		XenAppLink = (XenAppElement.get_attribute('href'))
-		self.LogAndPrint("XenAppLink: " + str(XenAppLink))
+		self.LogAndPrint("GoToXenApp(): XenAppLink: " + str(XenAppLink))
 
 		self.DriverObject.get(XenAppLink)
-		time.sleep(3)
+		time.sleep(2)
 		
-		self.LogAndPrint("GoToXenApp(): end")
+		self.LogAndPrint("GoToXenApp(): End")
 
 	def LoginToXenApp(self):
 
@@ -407,7 +352,7 @@ class DriverWrapper():
 
 		'''
 
-		self.LogAndPrint("LoginToXenApp(): start")
+		self.LogAndPrint("\nLoginToXenApp(): Start")
 		
 		LoginFrameXPath = "/html/body/div/table/tbody/tr/td[1]/iframe"
 		self.WaitForElement(LoginFrameXPath)
@@ -415,19 +360,19 @@ class DriverWrapper():
 		LoginFrame = self.DriverObject.find_element_by_xpath(LoginFrameXPath)
 		LoginFrameLink = LoginFrame.get_attribute('src')
 		
-		self.LogAndPrint("LoginFrameLink: " +  str(LoginFrameLink))
+		self.LogAndPrint("LoginToXenApp(): LoginFrameLink: " +  str(LoginFrameLink))
 		self.DriverObject.get(LoginFrameLink)
-		time.sleep(5)
+		time.sleep(2)
 
 		# USERNAME AND PASSWORD
-		self.LogAndPrint("Username:" + str(self.OktaLogin))
+		self.LogAndPrint("LoginToXenApp(): Username:" + str(self.OktaLogin))
 		UserNameInputXPath = "//*[@id=\"user\"]"
 		self.WaitForElement(UserNameInputXPath)
 
 		UserNameInputField = self.DriverObject.find_element_by_xpath(UserNameInputXPath)
 		UserNameInputField.clear()
 		UserNameInputField.send_keys(self.OktaLogin)
-		time.sleep(2)
+		time.sleep(1)
 
 		# USERNAME AND PASSWORD
 		PasswordInputXPath = "//*[@id=\"password\"]"
@@ -436,14 +381,29 @@ class DriverWrapper():
 		PasswordInputField = self.DriverObject.find_element_by_xpath(PasswordInputXPath)
 		PasswordInputField.clear()
 		PasswordInputField.send_keys(self.OktaPassword)
-		time.sleep(2)
+		time.sleep(1)
 
 		LoginButtonXPath = "//*[@id=\"btnLogin\"]"
 		LoginButton = self.DriverObject.find_element_by_xpath(LoginButtonXPath)
 		LoginButton.click()
 
-		time.sleep(2)
-		self.LogAndPrint("LoginToXenApp(): end")
+		time.sleep(1)
+
+		# Sometimes browser will show a page to download Citrix Online Web Plugin
+		try:
+
+			PluginAlreadyInstalledButtonXPath = "/html/body/div[1]/div/div/div[1]/div/div[3]/div[2]/div[2]/p[1]/a"
+			self.WaitForElement(PluginAlreadyInstalledButtonXPath, By.XPATH, 4)
+			PluginAlreadyInstalledButton = self.DriverObject.find_element_by_xpath(PluginAlreadyInstalledButtonXPath)
+			PluginAlreadyInstalledButton.click()
+			self.LogAndPrint("LoginToXenApp(): Citrix plugin download button clicked")
+
+		except Exception as e:
+			
+			self.LogAndPrint(e)
+			pass
+
+		self.LogAndPrint("LoginToXenApp(): End")
 
 	def ClickWDESkypeMenu(self):
 
@@ -453,7 +413,7 @@ class DriverWrapper():
 	
 		'''
 
-		self.LogAndPrint("ClickWDESkypeMenu(): start")
+		self.LogAndPrint("\nClickWDESkypeMenu(): Start")
 		time.sleep(2)
 
 		WDESkypeMenuPRDXPath = "//*[@id=\"Citrix.MPS.App.BISGreen.WDESkypeMenuPRD\"]"
@@ -466,7 +426,7 @@ class DriverWrapper():
 		WDESkypeMenuPRDElement.click()
 		time.sleep(1)
 
-		self.LogAndPrint("ClickWDESkypeMenu(): end")
+		self.LogAndPrint("ClickWDESkypeMenu(): End")
 
 	def ProcessWDE(self, RequestedFunction):
 		
@@ -477,7 +437,7 @@ class DriverWrapper():
 
 		'''
 	
-		self.LogAndPrint("ProcessWDE start: {0}".format(RequestedFunction))
+		self.LogAndPrint("\nProcessWDE Start: {0}".format(RequestedFunction))
 
 		ProcessWDEExePath = os.path.realpath(os.path.join(self.ExeFolderPath, "ProcessWDE.exe"))
 
@@ -493,8 +453,7 @@ class DriverWrapper():
 				self.LogAndPrint(output.strip().decode())
 			rc = child.poll()
 
-		self.LogAndPrint("ProcessWDE() end: {0}".format(RequestedFunction))
-
+		self.LogAndPrint("ProcessWDE() End: {0}".format(RequestedFunction))
 
 DriverWrapperObject = DriverWrapper()
 
@@ -509,7 +468,7 @@ DriverWrapperObject.ClickOktaButtonByName("US-West VPN (Redlands Tech Support)")
 
 DriverWrapperObject.LogAndPrint("Sleeping ... ")
 time.sleep(15)
-DriverWrapperObject.LogAndPrint("Sleeping...end")
+DriverWrapperObject.LogAndPrint("Done")
 
 SecondTab = DriverWrapperObject.DriverObject.window_handles[1]
 DriverWrapperObject.DriverObject.switch_to.window(SecondTab)
