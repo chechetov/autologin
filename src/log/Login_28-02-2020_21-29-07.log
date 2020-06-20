@@ -6,7 +6,7 @@ InitDriver(): Start
 2020-02-28 21:29:10,854 INFO InitDriver(): End
 2020-02-28 21:29:11,854 INFO 
 LoginToOkta(): Start
-2020-02-28 21:29:18,156 INFO LoginToOkta(): Username: den96560
+2020-02-28 21:29:18,156 INFO LoginToOkta(): Username: ********
 2020-02-28 21:29:25,415 INFO 
 LaunchReadAuth(): Start
 2020-02-28 21:29:25,521 INFO LaunchReadAuth(): AuthCode: 600342
