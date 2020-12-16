@@ -1,28 +1,18 @@
-# Auto Login harness to log in to Workspace automatically
+This is a repo for autologging into agent environment
 
-## Built on
-
-### Python
-### Selenium WebDriver
-### ChromeDriver
-### Chrome
-### AutoIt
-### Node.js + NodeWebKit
+Built because I am lazy and now is outdated.
 
 Main idea:
-1. Mount RamDisk with ImDisk (to cope with slow HDD speed at startup)
-2. Check if disk is mounted
-3. Launch Python script
-4. Python launches Chrome through Selenium WebDriver + ChromeDriver
-5. Web browser handles web part, node.js handles google authenticator part
-6. Once web part is done, AutoIt handles Citrix Windows
+1. mount RamDisk
+2. launch a script from there
+4. manipulate Chrome through Selenium WebDriver
+5. node.js handles google authenticator part
+6. autoit handles Citrix Windows
 
 Installation:
-1. Install ImDisk
-2. Compress repository into *.img file and put start.bat in the root folder
-3. Install start.bat in Windows Task Scheduler
-4. Intall required Python dependencies with PIP + Visual Basic tools
-5. Use and go back to step 4 in case something is missing.
-
-
-
+1. install ImDisk
+2. compress repository into *.img file and put start.bat in the root folder
+3. install start.bat in windows task scheduler
+4. intall required python dependencies with pip (sorry no reqs.txt) + Visual Basic tools
+5. go back to step 4 in case something is missing.
+=========
